@@ -2,14 +2,20 @@ import articles from "../../modules/login"
 
 class operation {
     static async login(ctx, next) {
-        console.log(ctx.request.body)
-        let isList = await articles.login()
-        if (isList) {
-            ctx.body = {
-                data: isList,
-                limt: isList.length
+        try {
+            let isList = await articles.login()
+            if (isList) {
+                return ctx.body = {
+                    data: isList,
+                    limt: isList.length
+                }
+            } else {
+                return ctx.body = { code: 400, msg: "参数有误" }
             }
+        } catch (error) {
+            return ctx.body = { code: 500, msg: "服务器异常，请稍后重试" }
         }
+
     }
     static async phone(ctx, next) {
         let _msg = await articles.phone()

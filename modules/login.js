@@ -10,7 +10,7 @@ class operation {
         return await Article.findAll()
     }
     static async phone() {
-        return "koa phone"
+        return "koa phonessss"
     }
     static async add(data) {
         return await Article.create({
